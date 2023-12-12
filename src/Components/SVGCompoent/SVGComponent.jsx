@@ -118,7 +118,50 @@ const SVGArrowRightWhite = () => {
   )
 }
 
+
+const SVGSearch = () => {
+  return (
+    <>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#7E7E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21 21L16.65 16.65" stroke="#7E7E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </>
+  )
+
+}
+
+const SVGMainWindow = ({children}) => {
+  return (
+    <>
+      <svg xmlns="http://www.w3.org/2000/svg" width="1088" height="932" viewBox="0 0 1088 932" fill="none">
+        <g filter="url(#filter0_d_501_4)">
+          <path d="M60 80C60 63.4315 73.4315 50 90 50H998C1014.57 50 1028 63.4315 1028 80V832C1028 848.568 1014.57 862 998 862H90C73.4315 862 60 848.568 60 832V80Z" fill="white"/>
+        </g>
+        <foreignObject x="30" y="38" width="968" height="812">
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            {children}
+          </div>
+        </foreignObject>
+        <defs>
+          <filter id="filter0_d_501_4" x="0" y="0" width="1088" height="932" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="10"/>
+            <feGaussianBlur stdDeviation="30"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.885625 0 0 0 0 0.92625 0 0 0 0 0.975 0 0 0 0.5 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_501_4"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_501_4" result="shape"/>          
+          </filter>
+        </defs>
+      </svg>
+    </>
+  )
+}
+
 export default SVGNull;
 export { SVGDashboardIcon, SVGArrowRight, SVGLogo,
          SVGProductIcon, SVGCustomersIcon, SVGIncomeIcon,
-         SVGPromoteIcon, SVGHelpIcon, SVGArrowRightWhite };
+         SVGPromoteIcon, SVGHelpIcon, SVGArrowRightWhite,
+         SVGMainWindow, SVGSearch, };
