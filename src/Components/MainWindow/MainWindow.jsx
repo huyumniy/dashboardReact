@@ -1,8 +1,9 @@
 import React from 'react';
+import './MainWindow.css';
 
 const MainWindow = () => {
   return (
-    <div>
+    <div className='main-window'>
       
     </div>
   );

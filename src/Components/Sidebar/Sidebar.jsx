@@ -16,7 +16,7 @@ const navItems = [
 ];
 
 const Sidebar = () => {
-  const [hoveredId, setHoveredId] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
 
   return (
     <div className="sidebar">
@@ -28,13 +28,13 @@ const Sidebar = () => {
       <div className="sidebar__nav">
         <ul>
           {navItems.map(({ id, Icon, label }) => (
-            <li key={id} id={id} onMouseEnter={() => setHoveredId(id)} onMouseLeave={() => setHoveredId(null)}>
-              <div className="sidebar__items">
+            <li key={id} id={id} onClick={() => setSelectedId(id)} className={selectedId === id ? 'sidebar__item--selected' : 'sidebar__item'}>
+              <div className="sidebar__data">
                 <Icon />
-                <a href="#">{label}</a>
+                <a href="#" style={{ color: selectedId === id ? '#fff' : '' }}>{label}</a>
               </div>
               <div className="sidebar__arrow">
-                {hoveredId === id ? <SVGArrowRightWhite/> : <SVGArrowRight/>}
+                {selectedId === id ? <SVGArrowRightWhite/> : <SVGArrowRight/>}
               </div>
             </li>
           ))}

@@ -5,10 +5,10 @@ import MainWindow from './Components/MainWindow/MainWindow';
 function App() {
 
   return (
-    <>
+    <main>
       <Sidebar />
       <MainWindow />
-    </>
+    </main>
   )
 }
 
