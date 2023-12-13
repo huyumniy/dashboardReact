@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './MainWindow.css';
 import { SVGMainWindow, SVGSearch } from '../SVGCompoent/SVGComponent';
+import rowsDataExample from '../../data.json'
 
 const TableRow = ({data, isActive}) => (
   <>
@@ -15,25 +16,39 @@ const TableRow = ({data, isActive}) => (
 )
 
 const MainWindow = () => {
+  const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedPage, setSelectedPage] = useState(1);
   const rowsPerPage = 8;
   // I added temporary data for the table instead of fetching it from the server
-  const [rows, setRows] = useState([
-    {data: ['John Doe', 'Microsoft', '(225) 555-0118', 'jane@microsoft.com', 'United States'], isActive: true},
-    {data: ['Floyd Miles', 'Yahoo', '(225) 555-0100', 'floyd@yahoo.com', 'Kiribati'], isActive: false},
-    {data: ['Ronald Richards', 'Adobe', '(302) 555-0107', 'ronald@adobe.com', 'Israel'], isActive: false},
-    {data: ['Marvin McKinney', 'Tesla', '(252) 555-0126', 'marvin@tesla.com', 'Iran'], isActive: true},
-    {data: ['Jerome Bell', 'Google', '(629) 555-0129', 'jerome@google.com', 'Réunion'], isActive: true},
-    {data: ['Kathryn Murphy', 'Microsoft', '(406) 555-0120', 'kathryn@microsoft.com', 'Curaçao'], isActive : true},
-    {data: ['Jacob Jones', 'Yahoo', '(208) 555-0112', 'jacob@yahoo.com', 'Brazil'], isActive: true}, 
-    {data: ['Kristin Watson', 'Facebook', '(704) 555-0127', 'kristin@facebook.com', 'Åland Islands'], isActive: false},
-    {data: ['Vladislav Gaidar', 'Example', '(099) 269-2034', 'vladkg53@gmail.com', 'Ukraine'], isActive: true}
-  ]);
+  const [rows, setRows] = useState(rowsDataExample);
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredRows = rows.filter(row => 
+    row.data.some(item => item.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
 
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = rows.slice(indexOfFirstRow, indexOfLastRow);
+  const currentRows = filteredRows.slice(indexOfFirstRow, indexOfLastRow);
+
+  const totalPages = Math.ceil(rows.length / rowsPerPage);
+  
+
+  const getPaginationNumbers = () => {
+    if (totalPages <= 3) {
+      return [...Array(totalPages).keys()].map(n => n + 1);
+    } else if (currentPage === 1) {
+      return [1, 2, 3];
+    } else if (currentPage === totalPages) {
+      return [totalPages - 2, totalPages - 1, totalPages];
+    } else {
+      return [currentPage - 1, currentPage, currentPage + 1];
+    }
+  };
 
   const paginate = pageNumber => {
     setCurrentPage(pageNumber);
@@ -49,7 +64,7 @@ const MainWindow = () => {
     setCurrentPage(prevPage => prevPage + 1);
     setSelectedPage(prevPage => prevPage + 1);
   };
-  
+
   return (
     <div className='main-window'>
       <h1 className='main-window__hello'>Hello Evano 👋🏼,</h1>
@@ -60,9 +75,14 @@ const MainWindow = () => {
             <span>Active members</span>
           </div>
           <div className="main-window__search-bar">
-            <SVGSearch />
-            <p>Search</p>
-          </div>
+        <SVGSearch />
+        <input 
+          type="text" 
+          placeholder="Search" 
+          value={searchTerm} 
+          onChange={handleSearchChange} 
+        />
+      </div>
         </div>
         <div className="main-window__body">
           <div className="main-window__table">
@@ -74,28 +94,28 @@ const MainWindow = () => {
               <p>Country</p>
               <p>Status</p>
             </div>
-            <hr className='main-window__horizontal-line'/>
             <div className="main-window__table-body">
               {currentRows.map((row, index) => <TableRow key={index} {...row} />)}
               
             </div>
-            <div className='main-window__footer'>
-              <div className="main-window__footer-info">Showing data 1 to 8 of  256K entries</div>
-              <div className="main-window__footer-buttons">
-              <button onClick={goToPreviousPage} disabled={currentPage === 1}>{'<'}</button>
-              {[...Array(Math.ceil(rows.length / rowsPerPage)).keys()].map(number => (
-                <button 
-                  key={number + 1} 
-                  onClick={() => paginate(number + 1)}
-                  className={selectedPage === number + 1 ? 'active' : ''}
-                >
-                  {number + 1}
-                </button>
-              ))}
-              <button onClick={goToNextPage} disabled={currentPage === Math.ceil(rows.length / rowsPerPage)}>{'>'}</button>
-              </div>
-              
-            </div>
+          </div>
+        </div>
+        <div className='main-window__footer'>
+          <div className="main-window__footer-info">Showing data 1 to 8 of {rows.length > 1000 ? rows.length + 'K' : rows.length} entries</div>
+          <div className="main-window__footer-buttons">
+            <button onClick={goToPreviousPage} disabled={currentPage === 1}>{'<'}</button>
+            {currentPage > 2 && totalPages > 3 && <><button onClick={() => paginate(1)}>1</button><span>...</span></>}
+            {getPaginationNumbers().map(number => (
+              <button 
+                key={number} 
+                onClick={() => paginate(number)}
+                className={selectedPage === number ? 'active' : ''}
+              >
+                {number}
+              </button>
+            ))}
+            {currentPage < totalPages - 1 && totalPages > 3 && <><span>...</span><button onClick={() => paginate(totalPages)}>{totalPages}</button></>}
+            <button onClick={goToNextPage} disabled={currentPage === totalPages}>{'>'}</button>
           </div>
         </div>
       </SVGMainWindow>

@@ -134,7 +134,7 @@ const SVGSearch = () => {
 const SVGMainWindow = ({children}) => {
   return (
     <>
-      <svg xmlns="http://www.w3.org/2000/svg" width="1088" height="932" viewBox="0 0 1088 932" fill="none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1088" height="932" viewBox="0 0 1088 932" fill="none" style={{filter: 'drop-shadow(0px 10px 60px rgba(226, 236, 249, 0.50))'}}>
         <g filter="url(#filter0_d_501_4)">
           <path d="M60 80C60 63.4315 73.4315 50 90 50H998C1014.57 50 1028 63.4315 1028 80V832C1028 848.568 1014.57 862 998 862H90C73.4315 862 60 848.568 60 832V80Z" fill="white"/>
         </g>
