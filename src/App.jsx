@@ -1,7 +1,7 @@
-import './App.css'
-import Sidebar from './Components/Sidebar/Sidebar';
-import MainWindow from './Components/MainWindow/MainWindow';
-import EmptyWindow from './Components/EmptyWindow/EmptyWindow';
+import './App.scss'
+import Sidebar from './Components/Sidebar';
+import MainWindow from './Components/MainWindow';
+import EmptyWindow from './Components/EmptyWindow';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {

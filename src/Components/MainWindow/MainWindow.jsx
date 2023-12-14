@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import './MainWindow.css';
-import { SVGMainWindow, SVGSearch } from '../SVGCompoent/SVGComponent';
+import './MainWindow.scss';
+import { SVGMainWindow, SVGSearch } from '../../Utils/SVGStorage';
 import rowsDataExample from '../../data.json'
 
 const TableRow = ({data, isActive}) => (
   <>
     <div className="main-window__table-row">
       {data.map((item, index) => <p key={index}>{item}</p>)}
-      <div className={isActive ? 'main-window__row-status--active' : 'main-window__row-status--inactive'}>
+      <div className={isActive ? 'main-window__row-status active' : 'main-window__row-status inactive'}>
         {isActive ? 'Active' : 'Inactive'}
       </div>
     </div>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Sidebar.css';
-import SVGNull, 
+import './Sidebar.scss';
+import
 { SVGDashboardIcon, SVGArrowRight, SVGLogo,
   SVGProductIcon, SVGCustomersIcon, SVGIncomeIcon,
   SVGPromoteIcon, SVGHelpIcon, SVGArrowRightWhite } 
-from '../SVGCompoent/SVGComponent';
+from '../../Utils/SVGStorage';
 import profile from '../../assets/evano.png'
 
 const navItems = [
@@ -19,7 +19,11 @@ const navItems = [
 
 const Sidebar = () => {
   const [selectedId, setSelectedId] = useState(null);
-
+  const [userData, setUserData] = useState({
+    name: 'Evano',
+    role: 'Project Manager',
+    profileImage: profile
+  });
   return (
     <div className="sidebar">
       <div className="sidebar__header">
@@ -32,7 +36,7 @@ const Sidebar = () => {
       <div className="sidebar__nav">
         <ul>
           {navItems.map(({ id, Icon, label, path }) => (
-            <li key={id} id={id} onClick={() => setSelectedId(id)} className={selectedId === id ? 'sidebar__item--selected' : 'sidebar__item'}>
+            <li key={id} id={id} onClick={() => setSelectedId(id)} className={selectedId === id ? 'sidebar__item selected' : 'sidebar__item'}>
               <div className="sidebar__data">
                 <Icon />
                 <Link to={path} style={{ color: selectedId === id ? '#fff' : '' }}>{label}</Link>
@@ -47,11 +51,11 @@ const Sidebar = () => {
       </div>
       <div className="sidebar__footer">
         <div className="sidebar__profile">
-          <img src={profile} alt="" />
+          <img src={userData.profileImage} alt="" />
         </div>
         <div className="sidebar__profile-info">
-          <h1>Evano</h1>
-          <span>Project Manager</span>
+          <h1>{userData.name}</h1>
+          <span>{userData.role}</span>
         </div>
       </div>
     </div>

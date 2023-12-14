@@ -1,5 +1,5 @@
 import React from 'react';
-import './SVGComponent.css';
+import './SVGStorage.css';
 
 const SVGNull = () => {
   return (
@@ -123,8 +123,8 @@ const SVGSearch = () => {
   return (
     <>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#7E7E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M21 21L16.65 16.65" stroke="#7E7E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#7E7E7E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M21 21L16.65 16.65" stroke="#7E7E7E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     </>
   )
@@ -144,8 +144,8 @@ const SVGMainWindow = ({children}) => {
           </div>
         </foreignObject>
         <defs>
-          <filter id="filter0_d_501_4" x="0" y="0" width="1088" height="932" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <filter id="filter0_d_501_4" x="0" y="0" width="1088" height="932" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
             <feOffset dy="10"/>
             <feGaussianBlur stdDeviation="30"/>
@@ -160,8 +160,8 @@ const SVGMainWindow = ({children}) => {
   )
 }
 
-export default SVGNull;
-export { SVGDashboardIcon, SVGArrowRight, SVGLogo,
+
+export { SVGNull, SVGDashboardIcon, SVGArrowRight, SVGLogo,
          SVGProductIcon, SVGCustomersIcon, SVGIncomeIcon,
          SVGPromoteIcon, SVGHelpIcon, SVGArrowRightWhite,
          SVGMainWindow, SVGSearch, };
