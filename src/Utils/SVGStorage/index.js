@@ -1,9 +1,9 @@
 import {SVGNull, SVGDashboardIcon, SVGArrowRight, SVGLogo,
     SVGProductIcon, SVGCustomersIcon, SVGIncomeIcon,
     SVGPromoteIcon, SVGHelpIcon, SVGArrowRightWhite,
-    SVGMainWindow, SVGSearch, } from './SVGStorage';
+    SVGSearch, SVGMenu, SVGXMark, } from './SVGStorage';
 
 export {SVGNull, SVGDashboardIcon, SVGArrowRight, SVGLogo,
     SVGProductIcon, SVGCustomersIcon, SVGIncomeIcon,
     SVGPromoteIcon, SVGHelpIcon, SVGArrowRightWhite,
-    SVGMainWindow, SVGSearch, };
+    SVGSearch, SVGMenu, SVGXMark, };
